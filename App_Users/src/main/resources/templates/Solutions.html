@@ -1,0 +1,682 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Solutions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        body
+        {
+            background-color: #FFFFFF;
+            color: #000000;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 13px;
+            line-height: 1.1875;
+            margin: 0;
+            padding: 0;
+        }
+        #wb_header
+        {
+            clear: both;
+            position: relative;
+            table-layout: fixed;
+            display: table;
+            text-align: center;
+            width: 100%;
+            background-color: #101010;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        #header
+        {
+            box-sizing: border-box;
+            padding: 0px 15px 0px 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #header > .row
+        {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        #header > .row > .col-1, #header > .row > .col-2, #header > .row > .col-3
+        {
+            box-sizing: border-box;
+            font-size: 0px;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            position: relative;
+        }
+        #header > .row > .col-1, #header > .row > .col-2, #header > .row > .col-3
+        {
+            float: left;
+        }
+        #header > .row > .col-1
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 50%;
+            text-align: left;
+        }
+        #header > .row > .col-2
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 8.33333333%;
+            text-align: center;
+        }
+        #header > .row > .col-3
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 41.66666667%;
+            text-align: right;
+        }
+        #header:before,
+        #header:after,
+        #header .row:before,
+        #header .row:after
+        {
+            display: table;
+            content: " ";
+        }
+        #header:after,
+        #header .row:after
+        {
+            clear: both;
+        }
+        @media (max-width: 480px)
+        {
+            #header > .row > .col-1, #header > .row > .col-2, #header > .row > .col-3
+            {
+                float: none;
+                width: 100%;
+            }
+        }
+        #headerBreadcrumb
+        {
+            padding: 8px 15px 8px 15px;
+            list-style: none;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #C0C0C0;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 0;
+            margin: 15px 0px 15px 0px;
+            text-align: left;
+        }
+        #headerBreadcrumb > li
+        {
+            display: inline-block;
+            font-size: 16px;
+        }
+        #headerBreadcrumb a
+        {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        #headerBreadcrumb a:hover
+        {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+        #headerBreadcrumb > .active
+        {
+            color: #777777;
+        }
+        #headerBreadcrumb > li + li:before
+        {
+            content: "";
+            padding: 0 5px;
+            color: #C0C0C0;
+        }
+        #headerBreadcrumb li i
+        {
+            font-size: 16px;
+            width: 18px;
+        }
+        #searchInput
+        {
+            border: 0px solid #E15E28;
+            border-radius: 4px;
+            background-color: #FFFFFF;
+            background-image: none;
+            color :#000000;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 13px;
+            box-sizing: border-box;
+            line-height: 26px;
+            padding: 4px 4px 4px 4px;
+            margin: 15px 10px 15px 0px;
+            text-align: left;
+        }
+        #searchInput:focus
+        {
+            border-color: #E15E28;
+            box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(225,94,40,0.60);
+            outline: 0;
+        }
+        #wb_searchClose
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #245580;
+            text-align: center;
+            margin: 15px 0px 15px 0px;
+            padding: 0;
+            vertical-align: top;
+            display:inline-block;
+            position:relative;
+        }
+        #wb_searchClose:hover
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #245580;
+        }
+        #searchClose
+        {
+            height: 35px;
+            width: 33px;
+        }
+        #searchClose i
+        {
+            color: #FFFFFF;
+            display: inline-block;
+            font-size: 33px;
+            line-height: 35px;
+            vertical-align: middle;
+            width: 25px;
+        }
+        #wb_searchClose:hover i
+        {
+            color: #FFFFFF;
+        }
+        #FlexContainer1
+        {
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            padding: 10px 10px 10px 10px;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-align-content: flex-start;
+            align-content: flex-start;
+            margin: 0;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            font-size: 0px;
+        }
+        #FlexContainer2
+        {
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            padding: 10px 10px 10px 10px;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-align-content: flex-start;
+            align-content: flex-start;
+            margin: 3px 0px 3px 0px;
+            -webkit-flex-grow: 0;
+            flex-grow: 0;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            -webkit-align-self: auto;
+            align-self: auto;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            font-size: 0px;
+        }
+        #wb_Heading1
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #000000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            -webkit-flex-grow: 0;
+            flex-grow: 0;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            -webkit-align-self: auto;
+            align-self: auto;
+        }
+        #Heading1
+        {
+            color: #000000;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 0;
+            text-align: center;
+        }
+        #wb_Card1
+        {
+            position: relative;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 1;
+            flex-shrink: 1;
+            -webkit-flex-basis: 0%;
+            flex-basis: 0%;
+            -webkit-align-self: auto;
+            align-self: auto;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid #101010;
+            border-radius: 3px;
+            margin: 5px 0px 5px 0px;
+            padding: 0;
+            text-align: center;
+        }
+        #Card1-card-body
+        {
+            -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+            font-size: 0px;
+        }
+        #Card1-card-header
+        {
+            box-sizing: border-box;
+            border-bottom: 1px solid #101010;
+            border-radius: 3px 3px 0 0;
+            margin: 0;
+            padding: 12px 20px 12px 20px;
+            background-color: #101010;
+            background-image: none;
+            color: #FFFFFF;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        #Card1-card-item1
+        {
+            box-sizing: border-box;
+            margin: 20px 20px 5px 20px;
+            padding: 0;
+            color: #292B2C;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 19px;
+        }
+        #Card1-card-item2
+        {
+            box-sizing: border-box;
+            margin: 1px 5px 1px 5px;
+            border-top: 1px #4F4F4F solid;
+            border-width: 1px 0 0 0;
+            height: 0;
+            line-height: 0;
+        }
+        #Card1-card-item3
+        {
+            box-sizing: border-box;
+            border-radius: 0 0 3px 3px;
+            margin: 2px 0px 5px 0px;
+            padding: 0;
+            color: #000000;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 13px;
+        }
+        #wb_LayoutGrid1
+        {
+            clear: both;
+            position: relative;
+            table-layout: fixed;
+            display: table;
+            text-align: center;
+            width: 100%;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        #LayoutGrid1
+        {
+            box-sizing: border-box;
+            padding: 0px 15px 0px 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #LayoutGrid1 > .row
+        {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        #LayoutGrid1 > .row > .col-1
+        {
+            box-sizing: border-box;
+            font-size: 0px;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            position: relative;
+        }
+        #LayoutGrid1 > .row > .col-1
+        {
+            float: left;
+        }
+        #LayoutGrid1 > .row > .col-1
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 100%;
+            text-align: left;
+        }
+        #LayoutGrid1:before,
+        #LayoutGrid1:after,
+        #LayoutGrid1 .row:before,
+        #LayoutGrid1 .row:after
+        {
+            display: table;
+            content: " ";
+        }
+        #LayoutGrid1:after,
+        #LayoutGrid1 .row:after
+        {
+            clear: both;
+        }
+        @media (max-width: 480px)
+        {
+            #LayoutGrid1 > .row > .col-1
+            {
+                float: none;
+                width: 100% !important;
+            }
+        }
+        #wb_LayoutGrid2
+        {
+            clear: both;
+            position: relative;
+            table-layout: fixed;
+            display: table;
+            text-align: center;
+            width: 100%;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        #LayoutGrid2
+        {
+            box-sizing: border-box;
+            padding: 5px 15px 5px 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #LayoutGrid2 > .row
+        {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        #LayoutGrid2 > .row > .col-1
+        {
+            box-sizing: border-box;
+            font-size: 0px;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            position: relative;
+        }
+        #LayoutGrid2 > .row > .col-1
+        {
+            float: left;
+        }
+        #LayoutGrid2 > .row > .col-1
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 100%;
+            text-align: center;
+        }
+        #LayoutGrid2:before,
+        #LayoutGrid2:after,
+        #LayoutGrid2 .row:before,
+        #LayoutGrid2 .row:after
+        {
+            display: table;
+            content: " ";
+        }
+        #LayoutGrid2:after,
+        #LayoutGrid2 .row:after
+        {
+            clear: both;
+        }
+        @media (max-width: 480px)
+        {
+            #LayoutGrid2 > .row > .col-1
+            {
+                float: none;
+                width: 100% !important;
+            }
+        }
+        #TextArea1
+        {
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            background-color: #FFFFFF;
+            background-image: none;
+            color :#000000;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 13px;
+            box-sizing: border-box;
+            padding: 4px 4px 4px 4px;
+            margin: 0;
+            box-shadow: 2px 2px 10px rgba(16,16,16,0.40);
+            text-align: left;
+            overflow: auto;
+            resize: none;
+        }
+        #TextArea1:focus
+        {
+            border-color: #66AFE9;
+            box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(102,175,233,0.60);
+            outline: 0;
+        }
+        #wb_LayoutGrid3
+        {
+            clear: both;
+            position: relative;
+            table-layout: fixed;
+            display: table;
+            text-align: center;
+            width: 100%;
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #CCCCCC;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        #LayoutGrid3
+        {
+            box-sizing: border-box;
+            padding: 5px 15px 5px 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #LayoutGrid3 > .row
+        {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        #LayoutGrid3 > .row > .col-1
+        {
+            box-sizing: border-box;
+            font-size: 0px;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            position: relative;
+        }
+        #LayoutGrid3 > .row > .col-1
+        {
+            float: left;
+        }
+        #LayoutGrid3 > .row > .col-1
+        {
+            background-color: transparent;
+            background-image: none;
+            border: 0px solid #FFFFFF;
+            width: 100%;
+            text-align: center;
+        }
+        #LayoutGrid3:before,
+        #LayoutGrid3:after,
+        #LayoutGrid3 .row:before,
+        #LayoutGrid3 .row:after
+        {
+            display: table;
+            content: " ";
+        }
+        #LayoutGrid3:after,
+        #LayoutGrid3 .row:after
+        {
+            clear: both;
+        }
+        @media (max-width: 480px)
+        {
+            #LayoutGrid3 > .row > .col-1
+            {
+                float: none;
+                width: 100% !important;
+            }
+        }
+        #Button1
+        {
+            border: 1px solid #A9A9A9;
+            border-radius: 4px;
+            background-color: #101010;
+            background-image: none;
+            color: #FFFFFF;
+            font-family: Arial;
+            font-weight: normal;
+            font-size: 13px;
+            margin: 0;
+        }
+        #headerPanelMenu_panel
+        {
+            margin-top: 65px;
+        }
+        #headerPanelMenu-footer
+        {
+            font-size: 12px;
+            bottom: 70px !important;
+        }
+        #Checkbox1{
+            display: inline-block;
+            margin-left: 85%;
+        }
+
+    </style>
+</head>
+<body>
+
+   <div id="wb_header">
+   <div id="header">
+   <div class="row">
+   <div class="col-1">
+   <div id="wb_headerBreadcrumb" style="display:inline-block;width:100%;z-index:0;vertical-align:top;">
+   <ul id="headerBreadcrumb">
+   <li><a href="/Home"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+   <li><a href="/Questions"><i class="fa fa-stack-overflow">&nbsp;</i>Questions</a></li>
+   </ul>
+
+   </div>
+   </div>
+
+
+   </div>
+   </div>
+   </div>
+
+   <div id="FlexContainer1" th:each="questions : ${list}">
+      <div id="FlexContainer2">
+         <div id="wb_Heading1" style="display:inline-block;width:263px;z-index:3;">
+            <p type="hidden" name="idquestion" th:value="${questions.idquestion}"></p>
+            <p id="Heading1" th:text="${questions.question}"></p>
+
+         </div>
+         <div id="wb_Card1"  style="display:flex;width:1300px;text-align:center;z-index:4;"  th:each="solutions : ${questions.solutionsList}">
+            <div id="Card1-card-header"><p th:text="${'Solution:'+solutions.username}" style="display: inline"></p></div>
+            <div id="Card1-card-body">
+               <div id="Card1-card-item1"><p th:text="${'Solution:'+solutions.solution}"></p></div>
+               <hr id="Card1-card-item2">
+               <div id="Card1-card-item3"><p th:text="${'Date:'+solutions.date_make}"></p></div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+
+
+   <div id="wb_LayoutGrid1">
+      <form name="LayoutGrid1" method="post" th:object="${solutions}" th:action="@{'/Solutions/'+${solutions.idquestion}}"  enctype="multipart/form-data" id="LayoutGrid1">
+         <div class="row">
+            <div class="col-1">
+               <div id="wb_LayoutGrid2">
+                  <div id="LayoutGrid2">
+                     <div class="row">
+                        <div class="col-1">
+                           <input type="text" hidden="hidden" th:field="${solutions.idquestion}">
+                           <textarea name="TextArea1" th:field="${solutions.solution}" id="TextArea1" style="display:block;width: 100%;height:165px;z-index:8;" rows="10" cols="110" spellcheck="false" placeholder="Input Solution"></textarea>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="wb_LayoutGrid3">
+                  <div id="LayoutGrid3">
+                     <div class="row">
+                        <div class="col-1">
+                           <input type="submit" id="Button1" name="" value="Save" style="display:inline-block;width:96px;height:25px;z-index:9;">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+
+</body>
+</html>

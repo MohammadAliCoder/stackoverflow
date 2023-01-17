@@ -1,0 +1,108 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<meta name="generator" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="./css/font-awesome.min.css" rel="stylesheet" th:href="@{./css/font-awesome.min.css}">
+<link href="./css/Home.css" rel="stylesheet" th:href="@{./css/Home.css}">
+<script src="./css/jquery-1.12.4.min.js" th:src="@{./css/jquery-1.12.4.min.js}"></script>
+<script src="./css/wb.panel.min.js" th:src="@{./css/wb.panel.min.js}"></script>
+<script src="./css/jquery-ui.min.js" th:src="@{./css/jquery-ui.min.js}"></script>
+<script src="./css/wwb15.min.js" th:src="@{./css/wwb15.min.js}"></script>
+<script>
+$(document).ready(function()
+{
+   $("#headerPanelMenu").panel({animate: true, animationDuration: 200, animationEasing: 'linear', dismissible: true, display: 'overlay', position: 'left', toggle: true});
+   $("#headerPanelMenu_markup ul li a").click(function(event)
+   {
+       $.panel.hide($("#headerPanelMenu_panel"));
+   });
+   $("a[href*='#LayoutGrid4']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_LayoutGrid4').offset().top-88 }, 600, 'easeOutCirc');
+   });
+});
+</script>
+</head>
+<body>
+<div id="wb_header">
+<div id="header">
+<div class="row">
+<div class="col-1">
+<div id="wb_headerPanelMenu" style="display:inline-block;width:50px;height:53px;z-index:0;">
+<a href="#headerPanelMenu_markup" id="headerPanelMenu">
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+</a>
+<div id="headerPanelMenu_markup">
+<ul role="menu">
+   <li role="menuitem"><a href="/Home"><i class="fa fa-home fa-fw"></i><span>Home</span></a></li>
+   <li role="menuitem"><a href="/Questions"><i class="fa fa-stack-overflow fa-fw"></i><span>Questions</span></a></li>
+   <li role="menuitem"><a href="/Profile"><i class="fa fa-gear fa-fw"></i><span>Profile Users</span></a></li>
+</ul>
+<div id="headerPanelMenu-footer">Stack Overflow</div>
+</div>
+
+</div>
+</div>
+<div class="col-2">
+<div id="wb_headerBreadcrumb" style="display:inline-block;width:100%;z-index:1;vertical-align:top;">
+<ul id="headerBreadcrumb">
+<li><a href="/Home"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+<li><a href="/Questions"><i class="fa fa-stack-overflow">&nbsp;</i>Questions</a></li>
+<li><a href="/Profile"><i class="fa fa-gear">&nbsp;</i>Profile Users</a></li>
+</ul>
+
+</div>
+</div>
+<div class="col-3">
+<input type="text" id="searchInput" style="display:none;width:185px;height:34px;z-index:2;" name="search" value="" spellcheck="false" placeholder="Search...">
+<div id="wb_searchClose" style="display:none;width:33px;height:35px;text-align:center;z-index:3;">
+<a href="#" onclick="ShowObjectWithEffect('searchInput', 0, 'slideright', 500);ShowObjectWithEffect('wb_searchClose', 0, '', 0);ShowObject('searchOpen', 1);return false;"><div id="searchClose"><i class="fa fa-times"></i></div></a>
+</div>
+<div id="wb_FontAwesomeIcon1" style="display:inline-block;width:40px;height:30px;text-align:center;z-index:4;">
+<a href="/login"><div id="FontAwesomeIcon1"><i class="fa fa-user-circle-o"></i></div></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="wb_LayoutGrid4">
+<div id="LayoutGrid4">
+<div class="row">
+<div class="col-1">
+<div class="col-1-padding">
+<div id="wb_Card7" style="display:flex;width:100%;z-index:5;">
+   <div id="Card7-card-body">
+      <div id="Card7-card-item0"><i class="fa fa-stack-overflow"></i></div>
+      <div id="Card7-card-item1">Questions</div>
+      <div id="Card7-card-item2">Add Questions</div>
+   </div>
+
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="col-2-padding">
+<div id="wb_Card8" style="display:flex;width:100%;z-index:6;">
+   <div id="Card8-card-body">
+      <div id="Card8-card-item0"><i class="fa fa-gear"></i></div>
+      <div id="Card8-card-item1">Profile Pages</div>
+      <div id="Card8-card-item2">User Profile<br></div>
+   </div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</body>
+</html>

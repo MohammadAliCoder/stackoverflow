@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta name="generator" >
+
+    <link href="./css/Register.css" rel="stylesheet" th:href="@{./css/Register.css}">
+</head>
+<body>
+<div id="wb_Form1" style="position:fixed;left:30%;top:10%;width:452px;height:471px;z-index:9;">
+<form name="Login" method="post" th:action="@{/registration}" th:object="${user}" enctype="multipart/form-data" id="Form1">
+<label  id="Label1" style="position:absolute;left:176px;top:9px;width:92px;height:39px;line-height:39px;z-index:0;">Register</label>
+<input type="email" th:field="*{email}" id="Editboxemail" style="position:absolute;left:39px;top:144px;width:359px;height:22px;z-index:1;" name="Editboxemail" value="" spellcheck="false" placeholder="Email">
+<input type="text" th:field="*{username}" id="Editboxusername" style="position:absolute;left:39px;top:189px;width:359px;height:22px;z-index:2;" name="Editboxusername" value="" spellcheck="false" placeholder="Username">
+<input type="password"  th:field="*{password}" id="Editboxpassword" style="position:absolute;left:39px;top:234px;width:359px;height:22px;z-index:3;" name="Editboxpassword" value="" spellcheck="false" placeholder="Password">
+<input type="submit" id="Button1" name="" value="Register" style="position:absolute;left:181px;top:433px;width:96px;height:25px;z-index:4;">
+<input type="text" th:field="*{first_name}" id="EditboxFirstName" style="position:absolute;left:42px;top:56px;width:359px;height:22px;z-index:5;" name="EditboxFirstName" value="" spellcheck="false" placeholder="FirstName">
+<input type="text"  th:field="*{lastName}" id="EditboxLastName" style="position:absolute;left:39px;top:100px;width:359px;height:22px;z-index:6;" name="EditboxLastName" value="" spellcheck="false" placeholder="LastName">
+<input type="text"  th:field="*{job}" id="Job" style="position:absolute;left:39px;top:275px;width:359px;height:22px;z-index:7;" name="Job" value="" spellcheck="false" placeholder="Job">
+<textarea name="Description"  th:field="*{description}" id="Description" style="position:absolute;left:42px;top:323px;width:362px;height:90px;z-index:8;" rows="5" cols="43" spellcheck="false" placeholder="Description"></textarea>
+</form>
+</div>
+</body>
+</html>

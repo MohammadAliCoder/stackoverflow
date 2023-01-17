@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="./css/Profile/font-awesome.min.css" rel="stylesheet"  th:href="@{./css/Profile/font-awesome.min.css}">
+<link href="./css/Profile/Profile.css" rel="stylesheet" th:href="@{./css/Profile/Profile.css}">
+<script src="./css/Profile/jquery-1.12.4.min.js" th:src="@{./css/Profile/jquery-1.12.4.min.js}"></script>
+<script src="./css/Profile/jquery-ui.min.js" th:src="@{./css/Profile/jquery-ui.min.js}"></script>
+<script src="./css/Profile/wwb15.min.js" th:src="@{./css/Profile/wwb15.min.js}"></script>
+</head>
+<body>
+<div id="wb_header">
+<div id="header">
+<div class="row">
+<div class="col-1">
+<div id="wb_headerBreadcrumb" style="display:inline-block;width:100%;z-index:0;vertical-align:top;">
+<ul id="headerBreadcrumb">
+<li><a href="/Home"><i class="fa fa-home">&nbsp;</i>HOME</a></li>
+</ul>
+
+</div>
+</div>
+<div class="col-2">
+</div>
+<div class="col-3">
+   <form th:action="@{/Profile}" method="get">
+<input type="text" id="searchInput" style="display:none;width:185px;height:34px;z-index:1;" name="search" value="" spellcheck="false" placeholder="Search Username...">
+
+
+<div id="wb_searchClose" style="display:none;width:33px;height:35px;text-align:center;z-index:2;">
+<a href="#" type="submit"  onclick="ShowObjectWithEffect('searchInput', 0, 'slideright', 500);ShowObjectWithEffect('wb_searchClose', 0, '', 0);ShowObjectWithEffect('wb_searchOpen', 1, '', 0);return false;"><div id="searchClose"><i class="fa fa-times"></i></div></a>
+</div>
+<div id="wb_searchOpen" style="display:inline-block;width:33px;height:35px;text-align:center;z-index:3;">
+<a href="#" onclick="ShowObjectWithEffect('searchInput', 1, 'slideright', 500);ShowObjectWithEffect('wb_searchClose', 1, '', 0);ShowObjectWithEffect('wb_searchOpen', 0, '', 0);return false;"><div id="searchOpen"><i class="fa fa-search"></i></div></a>
+</div>
+   </form>
+</div>
+</div>
+</div>
+</div>
+
+<div id="FlexContainer1" th:each="user : ${list}">
+   <div id="wb_Card1" style="display:flex;width:636px;text-align:center;z-index:4;">
+      <div id="Card1-card-body">
+         <div id="Card1-card-item0"><h2 th:text="${'Username :'+user.username}"></h2></div>
+         <div class="Card1-card-item1"><h3 th:text="${'Email :'+user.email}"></h3></div>
+         <div class="Card1-card-item1"><h4 th:text="${'First Name :'+user.first_name}"></h4>
+             <h4 th:text="${'Last Name: '+user.lastName}"></h4>
+         </div>
+         <div class="Card1-card-item1"><h5 th:text="${'Job :'+user.job}"></h5></div>
+         <div class="Card1-card-item1"><h5 th:text="${'Description :'+user.description}"></h5></div><!--
+         <hr id="Card1-card-item2">
+         <a href="/Home" id="Card1-card-item3">Show</a>
+         -->
+      </div>
+   </div>
+
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<meta name="generator" >
+<link href="./css/Login.css" rel="stylesheet"  th:href="@{./css/Register.css}">
+</head>
+<body>
+<div id="wb_Form1" style="position:fixed;left:30%;top:25%;width:452px;height:301px;">
+<form name="Login" method="POST" th:action="@{/login}" enctype="multipart/form-data" id="Form1">
+<label  id="Label1" style="position:absolute;left:176px;top:9px;width:92px;height:39px;line-height:39px;z-index:0;">Login</label>
+<input type="email" id="Editboxemail" style="position:absolute;left:39px;top:56px;width:359px;height:22px;z-index:1;" name="email"   placeholder="email">
+<input type="text" id="Editboxusername" style="position:absolute;left:39px;top:106px;width:359px;height:22px;z-index:2;" name="username"   placeholder="username">
+<input type="password" id="Editboxpassword" style="position:absolute;left:39px;top:160px;width:359px;height:22px;z-index:3;" name="password"  placeholder="password">
+<input type="submit" id="Button1" name="" value="login" style="position:absolute;left:178px;top:211px;width:96px;height:25px;z-index:4;">
+<a href="/registration" id="id_a" style="position:absolute;left:178px;top:240px;width:143px;height:31px;line-height:31px;z-index:5;">Create Account</a>
+</form>
+</div>
+</body>
+</html>
