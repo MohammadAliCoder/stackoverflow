@@ -1,0 +1,19 @@
+*************Dowmload Links**********
+
+https://www.rabbitmq.com/download.html
+https://www.erlang.org/downloads
+
+
+******cmd rabbitmq start******  
+
+
+1  cd C:\Program Files\RabbitMQ Server\rabbitmq_server-3.8.5\sbin
+
+2  rabbitmq-server start
+
+3  rabbitmq-plugins.bat enable rabbitmq_management
+
+4  http://localhost:15672/
+
+5 username :guest
+  password :guest
