@@ -1,0 +1,84 @@
+server:
+  port: 8081
+
+
+
+QUESTIONS-SERVICE:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: localhost:8090,localhost:8091,localhost:8092
+    ServerListRefreshInterval: 15000
+
+
+
+SOLUTIONS-SERVICE:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: localhost:8100,localhost:8101,localhost:8102
+    ServerListRefreshInterval: 15000
+
+
+---
+spring:
+  profiles: zone10
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    preferSameZoneEureka: true
+  instance:
+    metadataMap:
+      zone: zone10
+server:
+  port: ${PORT:8765}
+
+---
+spring:
+  profiles: zone2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka/
+    registerWithEureka: false
+    preferSameZoneEureka: true
+  instance:
+    metadataMap:
+      zone: zone2
+server:
+  port: ${PORT:8766}
+---
+spring:
+  profiles: zone3
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8763/eureka/
+    registerWithEureka: false
+    preferSameZoneEureka: true
+  instance:
+    metadataMap:
+      zone: zone3
+server:
+  port: ${PORT:8767}
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: questionsModule
+        uri:  lb://QUESTIONS-SERVICE/
+        predicates:
+        - Path=/Questions/**
+      - id: solutionsModule
+        uri:  lb://SOLUTIONS-SERVICE/
+        predicates:
+        - Path=/Solutions/**
+
+
+  application:
+    name:  Gateway-SERVICE
+
+
